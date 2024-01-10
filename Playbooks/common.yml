@@ -8,7 +8,14 @@
         name: wireshark
         state: latest
 
-- name: update LB server
+- name: Change Timezone on Web Servers alone
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Set the time zone to America/New_York
+      command: timedatectl set-timezone America/New_York
+
+- name: update DB server
   hosts: db
   become: yes
   tasks:
