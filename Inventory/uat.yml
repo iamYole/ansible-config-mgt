@@ -1,0 +1,17 @@
+all: 
+  vars:
+    ansible_ssh_private_key_file: /home/keys/dio_key.pem
+
+  hosts:
+    web_uat_1:
+      ansible_host: 172.31.39.30
+      ansible_user: ec2-user
+    web_uat_2:
+      ansible_host: 172.31.36.175
+      ansible_user: ec2-user
+
+  children:
+    webservers: 
+      hosts:
+        web_uat_1:
+        web_uat_2:
