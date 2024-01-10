@@ -11,7 +11,7 @@ all:
       ansible_user: ec2-user
 
   children:
-    webservers: 
+    uat-webservers: 
       hosts:
         web_uat_1:
         web_uat_2:
