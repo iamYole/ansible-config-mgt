@@ -1,0 +1,28 @@
+---
+- name: update web, nfs and db servers
+  hosts: webservers:nfs
+  become: yes
+  tasks:
+    - name: Uninstall wireshark 
+      yum:
+        name: wireshark
+        state: removed 
+
+- name: update LB server
+  hosts: db
+  become: yes
+  tasks:
+    - name: Uninstall wireshark 
+      apt:
+        name: wireshark-qt
+        state: absent 
+        autoremove: yes 
+        purge: yes 
+        autoclean: yes 
+
+- name: update Web server Timzones
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Change the timezones back to Europe/London
+      command: timedatectl set-timezone Europe/London
