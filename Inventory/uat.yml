@@ -9,9 +9,15 @@ all:
     web_uat_2:
       ansible_host: 172.31.36.175
       ansible_user: ec2-user
+    db_server:
+      ansible_host: 172.31.41.96
+      ansible_user: ubuntu
 
   children:
     uat-webservers: 
       hosts:
         web_uat_1:
         web_uat_2:
+    database_servers:
+      hosts: 
+        db_server:
