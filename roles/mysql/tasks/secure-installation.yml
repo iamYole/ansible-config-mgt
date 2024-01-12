@@ -28,7 +28,7 @@
   changed_when: false
 
 - name: Get list of hosts for the root user.
-  ansible.builtin.command: mysql -NBe
+  command: mysql -NBe
     "SELECT Host
     FROM mysql.user
     WHERE User = '{{ mysql_root_username }}'
