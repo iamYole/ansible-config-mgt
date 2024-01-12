@@ -4,7 +4,7 @@
 
 - hosts: loadbalancer_servers
 - name: Configuring and Enabling Load Balancer
-- import_playbook: ../static-assignments/uat-loadbalancer.yml
+- import_playbook: ../static-assignments/uat_loadbalancer.yml
   when: load_balancer_is_required
 
 - hosts: uat-webservers
