@@ -11,5 +11,6 @@
 - import_playbook: ../static-assignments/uat-dbserver.yml
 
 - name: Configuring and Enabling Load Balancer
+  hosts: loadbalancer_servers
 - import_playbook: ../static-assignments/uat-loadbalancer.yml
   when: load_balancer_is_required
