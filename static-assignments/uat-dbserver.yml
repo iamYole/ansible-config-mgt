@@ -1,5 +1,5 @@
 ---
-- hosts: web_uat_1
+- hosts: database_servers
   become: yes
   roles:
     - { role: mysql }
