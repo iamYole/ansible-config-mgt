@@ -25,7 +25,7 @@ overwrite_global_mycnf: true
 
 # Pass in a comma-separated list of repos to use (e.g. "remi,epel"). Used only
 # for RedHat systems (and derivatives).
-#mysql_enablerepo: ""
+mysql_enablerepo: ""
 
 # Define a custom list of packages to install; if none provided, the default
 # package list from vars/[OS-family].yml will be used.
@@ -106,18 +106,18 @@ mysql_config_include_files: []
 #  - { src: path/relative/to/playbook/anotherfile.cnf, force: yes }
 
 # Databases.
-mysql_databases: 
-   - name: tooling
-     collation: utf8_general_ci
-     encoding: utf8
-     replicate: 1
+mysql_databases: []
+#   - name: tooling
+#     collation: utf8_general_ci
+#     encoding: utf8
+#     replicate: 1
 
 # Users.
-mysql_users: 
-   - name: webaccess
-     host: 0.0.0.0
-     password: PassWord.1
-     priv: '*.*:ALL, GRANT'
+mysql_users: []
+#   - name: webaccess
+#     host: 0.0.0.0
+#     password: PassWord.1
+#     priv: '*.*:ALL, GRANT'
 
 mysql_disable_log_bin: false
 
