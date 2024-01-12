@@ -26,4 +26,4 @@ all:
         db_server:
     loadbalancer_servers:
       hosts:
-        lb_server:
+        lb_server
