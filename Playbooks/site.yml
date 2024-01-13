@@ -10,7 +10,7 @@
 - name: Configuring UAT Database Servers
 - import_playbook: ../static-assignments/uatdbserver.yml
 
+- hosts: loadbalancer_servers
 - name: Loadbalancers assignment
-  hosts: loadbalancer_servers
-    - import_playbook: ../static-assignments/uatloadbalancers.yml
+- import_playbook: ../static-assignments/uatloadbalancers.yml
   when: load_balancer_is_required
