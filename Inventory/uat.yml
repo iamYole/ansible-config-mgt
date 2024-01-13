@@ -12,6 +12,9 @@ all:
     db_server:
       ansible_host: 172.31.41.96
       ansible_user: ubuntu
+    lb_server:
+      ansible_host: 172.31.32.8
+      ansible_user: ubuntu
 
   children:
     uat-webservers: 
@@ -21,3 +24,6 @@ all:
     database_servers:
       hosts: 
         db_server:
+    loadbalancer_servers:
+      hosts:
+        lb_server

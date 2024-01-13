@@ -2,4 +2,4 @@
 - hosts: database_servers
   become: yes
   roles:
-    - { role: mysql }
+    - mysql
