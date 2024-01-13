@@ -2,11 +2,11 @@
 #- hosts: all
 #- import_playbook: ../static-assignments/common.yml
 
-- hosts: all
-- name: Import env-vars
-- import_playbook: ../dynamic-assignments/env-vars.yml
-  tags:
-    - always
+#- hosts: all
+#- name: Import env-vars
+#- import_playbook: ../dynamic-assignments/env-vars.yml
+#  tags:
+#    - always
 
 - hosts: uat-webservers
 - name: Configuring UAT Web Servers
@@ -19,4 +19,4 @@
 - hosts: loadbalancer_servers
 - name: Loadbalancers assignment
 - import_playbook: ../static-assignments/uatloadbalancer.yml
-  when: load_balancer_is_required
+#  when: load_balancer_is_required
