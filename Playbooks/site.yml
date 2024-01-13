@@ -10,7 +10,8 @@
 - hosts: webservers
 - name: Webserver assignment
   import_playbook: ../static-assignments/uatwebservers.yml
-#- hosts: loadbalancer_servers
-#- name: Configuring the Load Balancers
-#  import_playbook: ../static-assignments/uatloadbalancer.yml
-#  when: load_balancer_is_required
+
+- hosts: loadbalancer_servers
+- name: Configuring the Load Balancers
+  import_playbook: ../static-assignments/uatloadbalancer.yml
+  when: load_balancer_is_required
