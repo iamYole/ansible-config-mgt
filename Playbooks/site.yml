@@ -3,4 +3,3 @@
   hosts: loadbalancer_servers
   tasks:
     - import_playbook: ../static-assignments/uatloadbalancers.yml
-  when: load_balancer_is_required
