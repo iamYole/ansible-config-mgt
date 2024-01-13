@@ -2,6 +2,11 @@
 #- hosts: all
 #- import_playbook: ../static-assignments/common.yml
 
+- name: Import env-vars
+- import_playbook: ../dynamic-assignments/env-vars.yml
+  tags:
+    - always
+
 - hosts: uat-webservers
 - name: Configuring UAT Web Servers
 - import_playbook: ../static-assignments/uatwebservers.yml
