@@ -1,0 +1,12 @@
+---
+- hosts: dev-webservers
+  roles:
+    - webservers
+
+- hosts: dev-webservers
+  roles:
+    - nginx
+
+- hosts: db
+  roles:
+    - mysql
