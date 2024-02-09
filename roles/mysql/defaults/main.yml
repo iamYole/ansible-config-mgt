@@ -115,7 +115,7 @@ mysql_databases:
 # Users.
 mysql_users:
   - name: homesteaduser
-    host: 172.31.13.204
+    host: 0.0.0.0
     password: PassWord.1
     priv: "*.*:ALL,GRANT"
 
