@@ -107,15 +107,15 @@ mysql_config_include_files: []
 
 # Databases.
 mysql_databases:
-  - name: tooling
+  - name: homestead
     collation: utf8_general_ci
     encoding: utf8
     replicate: 1
 
 # Users.
 mysql_users:
-  - name: webaccess
-    host: 0.0.0.0
+  - name: homesteaduser
+    host: 172.31.13.204
     password: PassWord.1
     priv: "*.*:ALL,GRANT"
 
