@@ -1,21 +1,39 @@
 pipeline {
-    agent any
+  agent any
+  
+  environment {
+    ANSIBLE_CONFIG="${WORKSPACE}/deploy/ansible.cfg"
+  }
+
+  parameters {
+      string(name: 'Inventory', defaultValue: 'dev',  description: 'This is the inventory file for the environment to deploy configuration')
+    }
 
   stages {
-    stage('Build') {
-      steps {
-        script {
-          sh 'echo "Building Stage"'
-        }
+      stage('Cleaning up and initializing the environment') {
+          steps {
+              dir("${WORKSPACE}") {
+              deleteDir()
+            }
+          }
       }
-    }
-
-    stage('Test') {
-      steps {
-        script {
-          sh 'echo "Testing Stage"'
-        }
+      
+      stage('Checkout SCM'){
+          steps{
+                  git branch: 'main', url: 'https://github.com/iamYole/ansible-config-mgt.git'
+              }
       }
-    }
+      
+      stage('Run Ansible playbook'){
+          steps{
+              ansiblePlaybook become: true, colorized: true, credentialsId: 'Jenkins-Ansible-Server', disableHostKeyChecking: true, installation: 'Ansible', inventory: 'Inventory/${inventory}', playbook: 'Playbooks/site.yml', vaultTmpPath: ''
+          }
+      }
+      
+      stage('Clean Workspace after build'){
+          steps{
+              cleanWs(cleanWhenAborted: true, cleanWhenFailure: true, cleanWhenNotBuilt: true, cleanWhenUnstable: true, deleteDirs: true)
+          }
+      }
   }
 }

@@ -2,3 +2,7 @@
 - hosts: dev-webservers
 - name: Provisioning the Dev_Env Webservers
   import_playbook: ../static-assignments/devwebservers.yml
+
+- hosts: pentest_servers
+- name: Provisioning the Pentest_Env
+  import_playbook: ../static-assignments/pentest_servers.yml
