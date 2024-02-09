@@ -1,11 +1,11 @@
 ---
-- hosts: dev-webservers
-  roles:
-    - webservers
+#- hosts: dev-webservers
+#  roles:
+#    - webservers
 
-- hosts: dev-webservers
-  roles:
-    - apache
+#- hosts: dev-webservers
+#  roles:
+#    - apache
 
 - hosts: db
   roles:
