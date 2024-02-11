@@ -57,25 +57,25 @@
 
     - name: Ensure source directory exists
       ansible.builtin.file:
-        path: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
+        path: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/artifact/
         state: directory
 
     - name: Download the artifact
       ansible.builtin.get_url:
         url: http://18.134.137.130:8082/artifactory/PBL/php-todo.zip
-        dest: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
+        dest: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/
         url_username: admin
         url_password: iamYole86
 
     - name: unzip the artifacts
       ansible.builtin.unarchive:
-        src: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
-        dest: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
+        src: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/php-todo.zip
+        dest: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/artifact
         remote_src: yes
 
     - name: deploy the code
       ansible.builtin.copy:
-        src: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
+        src: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/artifact
         dest: /var/www/html/
         remote_src: yes
 
