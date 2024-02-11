@@ -58,14 +58,14 @@
     - name: Download the artifact
       ansible.builtin.get_url:
         url: http://18.134.137.130:8082/artifactory/PBL/php-todo.zip
-        dest: /home/ubuntu/
+        dest: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
         url_username: admin
         url_password: iamYole86
 
     - name: unzip the artifacts
       ansible.builtin.unarchive:
-        src: /home/ubuntu/php-todo
-        dest: /home/ubuntu/
+        src: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
+        dest: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
         remote_src: yes
 
     - name: deploy the code
