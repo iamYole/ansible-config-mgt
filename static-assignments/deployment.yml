@@ -73,16 +73,18 @@
         dest: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/
         remote_src: yes
 
+    - name: Remove Apache and Nginx default page
+      ansible.builtin.file:
+        path: /var/www/html/{{ item }}
+        state: absent
+      with_fileglob:
+        - /var/www/html/*
+
     - name: deploy the code
       ansible.builtin.copy:
         src: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/
         dest: /var/www/html/
         remote_src: yes
-
-    - name: Remove Apache default page
-      ansible.builtin.file:
-        path: /var/www/html/index.html
-        state: absent
 
     - name: Restart Apache
       ansible.builtin.service:
