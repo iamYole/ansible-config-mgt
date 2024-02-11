@@ -42,7 +42,7 @@
           - unzip
           - php-common
           - php-mbstring
-          - php-opcache
+          #- php-opcache
           - php-intl
           - php-xml
           - php-fpm
