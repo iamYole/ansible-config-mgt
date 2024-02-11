@@ -49,11 +49,11 @@
           - php-json
         state: present
 
-    - name: Ensure PHP-FPM is started and enabled
-      ansible.builtin.service:
-        name: php-fpm
-        state: started
-        enabled: yes
+    #- name: Ensure PHP-FPM is started and enabled
+    #  ansible.builtin.service:
+    #    name: php-fpm
+    #    state: started
+    #    enabled: yes
 
     - name: Download the artifact
       ansible.builtin.get_url:
