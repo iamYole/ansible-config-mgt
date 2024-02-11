@@ -57,7 +57,7 @@
 
     - name: Ensure source directory exists
       ansible.builtin.file:
-        path: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/artifact/
+        path: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/
         state: directory
 
     - name: Download the artifact
@@ -70,18 +70,18 @@
     - name: unzip the artifacts
       ansible.builtin.unarchive:
         src: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/php-todo.zip
-        dest: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/artifact
+        dest: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/
         remote_src: yes
 
     - name: deploy the code
       ansible.builtin.copy:
-        src: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/artifact
+        src: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/
         dest: /var/www/html/
         remote_src: yes
 
     - name: Remove Apache default page
       ansible.builtin.file:
-        path: /etc/apache2/sites-enabled/000-default.conf
+        path: /var/www/html/index.html
         state: absent
 
     - name: Restart Apache
