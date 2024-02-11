@@ -1,7 +1,10 @@
 ---
-- hosts: db
-- name: Provisioning the Database for Php TODO
-  import_playbook: ../static-assignments/devwebservers.yml
+- hosts: todo
+- name: Deploy the PhP TODO Web Application
+  import_playbook: deployment.yml
+#- hosts: db
+#- name: Provisioning the Database for Php TODO
+#  import_playbook: ../static-assignments/devwebservers.yml
 #- hosts: pentest_servers
 #- name: Provisioning the Pentest_Env
 #  import_playbook: ../static-assignments/pentest_servers.yml

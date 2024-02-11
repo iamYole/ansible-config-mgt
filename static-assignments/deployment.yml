@@ -1,0 +1,85 @@
+---
+- name: Deploying the PHP Applicaion to Dev Enviroment
+  become: true
+  hosts: todo
+
+  tasks:
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+
+    - name: Install prerequisites
+      ansible.builtin.apt:
+        name:
+          - dirmngr
+          - gnupg
+          - software-properties-common
+        state: present
+
+    - name: Add PHP repository
+      ansible.builtin.apt_repository:
+        repo: ppa:ondrej/php
+        state: present
+
+    - name: install Apache on the webserver
+      ansible.builtin.apt:
+        name: apache2
+        state: present
+
+    - name: ensure httpd is started and enabled
+      ansible.builtin.service:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Install PHP and required extensions
+      ansible.builtin.apt:
+        name:
+          - php
+          - php-mysql
+          - php-gd
+          - php-curl
+          - unzip
+          - php-common
+          - php-mbstring
+          - php-opcache
+          - php-intl
+          - php-xml
+          - php-fpm
+          - php-json
+        state: present
+
+    - name: Ensure PHP-FPM is started and enabled
+      ansible.builtin.service:
+        name: php-fpm
+        state: started
+        enabled: yes
+
+    - name: Download the artifact
+      ansible.builtin.get_url:
+        url: http://18.133.204.179:8082/artifactory/PBL/php-todo
+        dest: /home/ubuntu/
+        url_username: admin
+        url_password: cmVmdGtuOjAxOjE3MzkxNzM0ODQ6OXlhdks0aE1NZU0yb2hqZEFmWGhmV0ZWcmNm
+
+    - name: unzip the artifacts
+      ansible.builtin.unarchive:
+        src: /home/ubuntu/php-todo
+        dest: /home/ubuntu/
+        remote_src: yes
+
+    - name: deploy the code
+      ansible.builtin.copy:
+        src: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
+        dest: /var/www/html/
+        remote_src: yes
+
+    - name: Remove Apache default page
+      ansible.builtin.file:
+        path: /etc/apache2/sites-enabled/000-default.conf
+        state: absent
+
+    - name: Restart Apache
+      ansible.builtin.service:
+        name: apache2
+        state: restarted
