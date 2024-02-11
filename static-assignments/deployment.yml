@@ -55,6 +55,11 @@
     #    state: started
     #    enabled: yes
 
+    - name: Ensure source directory exists
+      ansible.builtin.file:
+        path: /home/ubuntu/var/lib/jenkins/workspace/php-todo_main/
+        state: directory
+
     - name: Download the artifact
       ansible.builtin.get_url:
         url: http://18.134.137.130:8082/artifactory/PBL/php-todo.zip
