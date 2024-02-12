@@ -50,8 +50,8 @@
           - php-json
         state: present
 
-     - name: Enable PhP-FPM
-       ansible.builtin.command:
+    - name: Enable PhP-FPM
+      ansible.builtin.command:
         command: a2enmod proxy_fcgi setenvif
         state: started
         enabled: yes
