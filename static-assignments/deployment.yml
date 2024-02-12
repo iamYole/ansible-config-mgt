@@ -46,14 +46,21 @@
           - php-intl
           - php-xml
           - php-fpm
+          - libapache2-mod-fastcgi
           - php-json
         state: present
 
-    #- name: Ensure PHP-FPM is started and enabled
-    #  ansible.builtin.service:
-    #    name: php-fpm
-    #    state: started
-    #    enabled: yes
+     - name: Enable PhP-FPM
+       ansible.builtin.command:
+        command: a2enmod proxy_fcgi setenvif
+        state: started
+        enabled: yes
+
+    - name: Ensure PHP-FPM is started and enabled
+      ansible.builtin.service:
+        name: php-fpm
+        state: started
+        enabled: yes
 
     - name: Ensure source directory exists
       ansible.builtin.file:
@@ -62,7 +69,7 @@
 
     - name: Download the artifact
       ansible.builtin.get_url:
-        url: http://18.132.202.240:8082/artifactory/PBL/php-todo.zip
+        url: http://18.132.202.68:8082/artifactory/PBL/php-todo.zip
         dest: /home/ubuntu/var/lib/jenkins/workspace/php_todo_cicd/
         url_username: admin
         url_password: iamYole86
