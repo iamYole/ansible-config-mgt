@@ -35,7 +35,7 @@
     - name: Install PHP and required extensions
       ansible.builtin.apt:
         name:
-          - php
+          - php7.4
           - php-mysql
           - php-gd
           - php-curl
@@ -45,13 +45,13 @@
           #- php-opcache
           - php-intl
           - php-xml
-          - php-fpm
+          - php7.4-fpm
           - php-json
         state: present
 
     - name: Ensure PHP-FPM is started and enabled
       ansible.builtin.service:
-        name: php-fpm
+        name: php7.4-fpm
         state: started
         enabled: yes
 
