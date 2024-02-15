@@ -10,7 +10,7 @@ all:
       ansible_host: 172.31.34.118
       ansible_user: ubuntu
     sonarqube:
-      ansible_host: 172.31.47.236
+      ansible_host: 172.31.13.204
       ansible_user: ubuntu
 
   children:
