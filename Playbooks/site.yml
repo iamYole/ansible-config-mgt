@@ -1,10 +1,7 @@
 ---
-- hosts: sonarqube
-- name: Provision the SonarQube Server
-  import_playbook: ../static-assignments/sonarserver.yml
-#- hosts: todo
-#- name: Deploy the PhP TODO Web Application
-#  import_playbook: ../static-assignments/deployment.yml
+- hosts: todo
+- name: Deploy the PhP TODO Web Application
+  import_playbook: ../static-assignments/deployment.yml
 #- hosts: db
 #- name: Provisioning the Database for Php TODO
 #  import_playbook: ../static-assignments/devwebservers.yml
