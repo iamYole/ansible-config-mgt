@@ -2,4 +2,4 @@
 - hosts: sonarqube
   become: yes
   roles:
-    - sonar
+    - geerlingguy.sonar
